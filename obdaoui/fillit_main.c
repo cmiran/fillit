@@ -6,7 +6,7 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 18:44:30 by obadaoui          #+#    #+#             */
-/*   Updated: 2017/12/06 14:28:06 by obadaoui         ###   ########.fr       */
+/*   Updated: 2017/12/06 16:00:45 by obadaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 
 int		main(int argc, char **argv)
 {
+	int fd;
 	if (argc != 2)
 	{
 		ft_putstr("usage: fillit source_file");
 		exit(EXIT_FAILURE);
 	}
-	open();
+	fd = open();
 	if (!bloc_checker(argv[1]))
 	{
 		ft_putstr("error");
