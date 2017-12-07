@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 17:21:35 by cmiran            #+#    #+#             */
-/*   Updated: 2017/12/07 17:35:13 by cmiran           ###   ########.fr       */
+/*   Updated: 2017/12/07 19:41:20 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ int	main(int argc, char **argv)
 {
 	t_list	*list;
 	
-	if (argc != 2 || !(list = pull_tetri(open(argv[1], O_RDONLY))))
+	if (argc != 2)
 	{
-		ft_putstr("error\n");
+		ft_putendl("usage: ./fillit [input_file]");
 		return (EXIT_FAILURE);
 	}
+	
+	
 	return (0);
 }
