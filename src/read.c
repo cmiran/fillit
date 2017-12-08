@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 16:07:42 by cmiran            #+#    #+#             */
-/*   Updated: 2017/12/08 11:59:05 by cmiran           ###   ########.fr       */
+/*   Updated: 2017/12/08 13:24:45 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,13 @@ int		bloc_check(const char *str, const int ret)
 		{
 			if (str[i + j] != '.' || str[i + j] != '#')
 				return (1);
+			else if(str[i + j] == '#' && ++k != 4)
+				return (1);
 			j++;
 		}
 		if (str [i + j] != '\n')
 			return (1);
-		else
-			i += j + 1;
+		i += j + 1;
 	}
 	if (ret == 21 && str[20] != '\n')
 			return (1);
