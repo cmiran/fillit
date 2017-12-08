@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 15:47:41 by cmiran            #+#    #+#             */
-/*   Updated: 2017/12/07 20:32:13 by cmiran           ###   ########.fr       */
+/*   Updated: 2017/12/08 19:29:46 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,11 @@
 
 typedef struct	s_etris
 {
-	char	**pos;
-		
-	size_t	x;
-	size_t 	y;
-	size_t	width;
-	size_t	height;
+	unsigned char	id;
+	size_t		*x;
+	size_t 		*y;
+	struct s_etris	*next;
 
 }		t_etris;
-
+int		pull_list(const int fd, t_etris *list);
 #endif

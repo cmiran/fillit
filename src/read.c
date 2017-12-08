@@ -6,14 +6,53 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 16:07:42 by cmiran            #+#    #+#             */
-/*   Updated: 2017/12/08 13:34:54 by cmiran           ###   ########.fr       */
+/*   Updated: 2017/12/08 19:29:41 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fillit.h"
 #include "../include/libft.h"
 
-int		adja_check(const char *str)
+size_t	**get_pos(const char *str)
+{
+	unsigned int	i;
+	unsigned int	j;
+	unsigned int	k;
+	unsigned int	l;
+	size_t 				pos[2][4];
+
+	i = 0;
+	k = 0;
+	l = 0;
+	while (i < 20)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			if (str[i + j] == '#')
+			{
+				pos[0][k] = j;
+				pos[1][k] = l;
+				k++;
+			}
+			j++;
+		}
+		l++;
+	}
+	return (pos);
+}
+
+int	pull_bloc(const char *str, t_etris *list, char id)
+{
+	size_t	i;
+
+	i = 0;
+	pos = get_pos(str);
+
+	return (0);
+}
+
+int	check_adja(const char *str)
 {
 	int i;
 	size_t j;
@@ -38,7 +77,7 @@ int		adja_check(const char *str)
 	return (i == 6 || i == 8);
 }
 
-int		bloc_check(const char *str, const int ret)
+int	check_chunk(const char *str, const int ret)
 {
 	size_t	i;
 	size_t	j;
@@ -61,23 +100,23 @@ int		bloc_check(const char *str, const int ret)
 			return (1);
 		i += j + 1;
 	}
-	if (ret == 21 && str[20] != '\n')
-			return (1);
-	if (!(adja_check(str)))
+	if (!(check_adja(str)))
 		return (1);
 	return (0);
 }
 
-t_list	pull_tetri(const int fd)
+int	pull_list(const int fd, t_etris *list)
 {
 	char		buf[22];
-	t_list	list;
 	int			ret;
+	char		id;
 
+	id = 'A';
 	while ((ret = read(fd, buf, 21)) >= 20)
 	{
-		if (!(bloc_check(buf, ret)))
-		
+		if (!(check_chunk(buf, ret)))
+			return (1);
+
 	}
-	return (list);	
+	return (0);	
 }
