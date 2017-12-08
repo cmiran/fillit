@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 16:07:42 by cmiran            #+#    #+#             */
-/*   Updated: 2017/12/07 20:54:54 by cmiran           ###   ########.fr       */
+/*   Updated: 2017/12/08 11:59:05 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,30 +20,32 @@ int		adja_check(const char *str)
 
 	i = 0;
 	j = 0;
-	while (j < 20)
+	while (i < 20)
 	{
-		if (str[j] == '#')
+		if (str[i] == '#')
 		{
 			if ((i + 1) < 20 && str[i + 1] == '#')
-				i++;
+				j++;
 			if ((i - 1) >= 0 && str[i - 1] == '#')
-				i++;
+				j++;
 			if ((i + 5) < 20 && str[i + 5] == '#')
-				i++;
+				j++;
 			if ((i - 5) >= 0 && str[i - 5] == '#')
-				i++;
+				j++;
 		}
-		j++;
+		i++;
 	}
 	return (i == 6 || i == 8);
 }
 
 int		bloc_check(const char *str, const int ret)
 {
-	size_t i;
-	size_t j;
+	size_t	i;
+	size_t	j;
+	size_t	k;
 
 	i = 0;
+	k = 0;
 	while (i < 20)
 	{
 		j = 0;
@@ -70,7 +72,7 @@ t_list	pull_tetri(const int fd)
 	char		buf[22];
 	t_list	list;
 	int			ret;
-	
+
 	while ((ret = read(fd, buf, 21)) >= 20)
 	{
 		if (!(bloc_check(buf, ret)))
