@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 17:21:35 by cmiran            #+#    #+#             */
-/*   Updated: 2017/12/08 16:39:49 by cmiran           ###   ########.fr       */
+/*   Updated: 2017/12/10 20:37:32 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int argc, char **argv)
 	}
 	if (!(fd = open(argv[1], O_RDONLY)))
 	 return (kill());	
+	ft_memset(list, 0, sizeof(list) * 27);
 	if(!(pull_list(fd, list)))
 		return (kill());
 	return (0);

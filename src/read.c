@@ -6,24 +6,21 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 16:07:42 by cmiran            #+#    #+#             */
-/*   Updated: 2017/12/08 19:29:41 by cmiran           ###   ########.fr       */
+/*   Updated: 2017/12/10 20:44:59 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fillit.h"
 #include "../include/libft.h"
 
-size_t	**get_pos(const char *str)
+void	get_pos(const char *str, int *x, int *y)
 {
-	unsigned int	i;
-	unsigned int	j;
-	unsigned int	k;
-	unsigned int	l;
-	size_t 				pos[2][4];
+	int	i;
+	int	j;
+	int	k;
 
 	i = 0;
 	k = 0;
-	l = 0;
 	while (i < 20)
 	{
 		j = 0;
@@ -31,25 +28,34 @@ size_t	**get_pos(const char *str)
 		{
 			if (str[i + j] == '#')
 			{
-				pos[0][k] = j;
-				pos[1][k] = l;
-				k++;
+				*x++ = j;
+				*y++ = k;
 			}
 			j++;
 		}
-		l++;
+		i += j + 1;
+		k++;
 	}
-	return (pos);
 }
 
-int	pull_bloc(const char *str, t_etris *list, char id)
+t_etris	write_tetri(const char *str, char id)
 {
-	size_t	i;
+	t_etris	tetri;
+	int	i;
+	int	x[4];
+	int	y[4];
 
 	i = 0;
-	pos = get_pos(str);
-
-	return (0);
+	get_pos(str, x, y);
+	while (i < 4)
+	{
+		tetri.x[i] = x[i];
+		tetri.y[i] = y[i];
+		i++;
+	}
+	tetri.id = id;
+	tetri.next = NULL;
+	return (tetri);
 }
 
 int	check_adja(const char *str)
@@ -91,18 +97,20 @@ int	check_chunk(const char *str, const int ret)
 		while (j < 4)
 		{
 			if (str[i + j] != '.' || str[i + j] != '#')
-				return (1);
+				return (0);
 			else if(str[i + j] == '#' && ++k > 4)
-				return (1);
+				return (0);
 			j++;
 		}
 		if (str [i + j] != '\n')
-			return (1);
+			return (0);
 		i += j + 1;
 	}
+	if (ret == 21 && str[i] != '\n')
+		return (0);
 	if (!(check_adja(str)))
-		return (1);
-	return (0);
+		return (0);
+	return (1);
 }
 
 int	pull_list(const int fd, t_etris *list)
@@ -110,13 +118,19 @@ int	pull_list(const int fd, t_etris *list)
 	char		buf[22];
 	int			ret;
 	char		id;
+	int			i;
 
 	id = 'A';
+	i = 0;
 	while ((ret = read(fd, buf, 21)) >= 20)
 	{
 		if (!(check_chunk(buf, ret)))
 			return (1);
-
+		list[i] = write_tetri(buf, id++);
+		list->next = &list[i + 1];
+		i++;
 	}
-	return (0);	
+	if (ret > 0)
+		return (0);
+	return (id - 'A');	
 }
