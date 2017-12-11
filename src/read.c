@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 16:07:42 by cmiran            #+#    #+#             */
-/*   Updated: 2017/12/11 19:47:59 by cmiran           ###   ########.fr       */
+/*   Updated: 2017/12/11 19:57:37 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,8 +137,8 @@ int	check_chunk(const char *str, const int ret)
 ** in a linked list.
 ** C'EST ICI QUE JE PENSE EN FAIRE TROP OU LOUPER QUELQUE CHOSE,
 ** J'AIMERAIS POINTER GOFISRT SUR LE PREMIER TETRIMINOS RECU, OR LA EN SORTIE,
-** LE PREMIER EST MON DERNIER. MAIS JE NE SAIS PAS SI CA A UNE GRANDE IMPORTANCE
-** AU FINAL.
+** LE PREMIER EST MON DERNIER ET AINSI DE SUITE.
+** MAIS JE NE SAIS PAS SI CA A UNE GRANDE IMPORTANCE AU FINAL.
 */
 
 int	pull_list(const int fd, t_control *gofirst)
