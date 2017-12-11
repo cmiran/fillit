@@ -6,12 +6,19 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 16:07:42 by cmiran            #+#    #+#             */
-/*   Updated: 2017/12/11 18:05:20 by cmiran           ###   ########.fr       */
+/*   Updated: 2017/12/11 19:23:23 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fillit.h"
 #include "../include/libft.h"
+
+/*
+** Get abscissa and ordinate for each '#'.
+** JE PENSE QUE LA IL FAUT AUPARAVANT RAMNER CHAQUE TETRIMINOS
+** DANS LE COIN HAUT GAUCHE DU BUFFER. PEUT ETRE EST IL POSSIBLE DE FAIRE CA
+** AVEC UN CALCUL.
+*/
 
 void	get_pos(const char *str, int *x, int *y)
 {
@@ -38,6 +45,10 @@ void	get_pos(const char *str, int *x, int *y)
 	}
 }
 
+/*
+** Create a tetriminos with its coordinates on the chunk and id.
+*/
+
 void	write_tetri(const char *str, t_etris *tetri, char id)
 {
 	int	i;
@@ -55,6 +66,11 @@ void	write_tetri(const char *str, t_etris *tetri, char id)
 	tetri->id = id;
 	tetri->next = NULL;
 }
+
+/*
+** Check if each # is adjacent to another.
+** If there is 6 or 8 connections, the tetriminos is valid.
+*/
 
 int	check_adja(const char *str)
 {
@@ -80,6 +96,12 @@ int	check_adja(const char *str)
 	}
 	return (j == 6 || j == 8);
 }
+
+/*
+** Check the buf from read.
+** For each chunk must contain a 4 * 4 bloc,
+** with only 20 char, '.', 5 * '\n', 4 * '#'.
+*/
 
 int	check_chunk(const char *str, const int ret)
 {
@@ -110,6 +132,15 @@ int	check_chunk(const char *str, const int ret)
 		return (0);
 	return (1);
 }
+
+/*
+** Assuming the input is valid, malloc a s_etris for each tetriminos,
+** in a linked list.
+** C'EST ICI QUE JE PENSE EN FAIRE TROP OU LOUPER QUELQUE CHOSE,
+** J'AIMERAIS POINTER GOFISRT SUR LE PREMIER TETRIMINOS RECU, OR LA EN SORTIE,
+** LE PREMIER EST MON DERNIER. MAIS JE NE SAIS PAS SI CA A UNE GRANDE IMPORTANCE
+** AU FINAL.
+*/
 
 int	pull_list(const int fd, t_control *gofirst)
 {

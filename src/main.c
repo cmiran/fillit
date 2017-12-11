@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 17:21:35 by cmiran            #+#    #+#             */
-/*   Updated: 2017/12/11 16:40:57 by cmiran           ###   ########.fr       */
+/*   Updated: 2017/12/11 18:07:46 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	main(int argc, char **argv)
 		return (kill());
 	if (!(fd = open(argv[1], O_RDONLY)))
 	 return (kill());
-	printf("1\n");
 	if(!(pull_list(fd, gofirst)))
 		return (kill());
 	print_list(gofirst);
