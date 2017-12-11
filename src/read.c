@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 16:07:42 by cmiran            #+#    #+#             */
-/*   Updated: 2017/12/10 20:44:59 by cmiran           ###   ########.fr       */
+/*   Updated: 2017/12/11 17:30:10 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,30 +38,31 @@ void	get_pos(const char *str, int *x, int *y)
 	}
 }
 
-t_etris	write_tetri(const char *str, char id)
+void	write_tetri(const char *str, t_etris *tetri, char id)
 {
-	t_etris	tetri;
 	int	i;
 	int	x[4];
 	int	y[4];
+//	t_etris	*tetri;
 
 	i = 0;
+//	tetri = NULL;
 	get_pos(str, x, y);
 	while (i < 4)
 	{
-		tetri.x[i] = x[i];
-		tetri.y[i] = y[i];
+		tetri->x[i] = x[i];
+		tetri->y[i] = y[i];
 		i++;
 	}
-	tetri.id = id;
-	tetri.next = NULL;
-	return (tetri);
+	tetri->id = id;
+	tetri->next = NULL;
+//	return (tetri);
 }
 
 int	check_adja(const char *str)
 {
 	int i;
-	size_t j;
+	int j;
 
 	i = 0;
 	j = 0;
@@ -80,23 +81,23 @@ int	check_adja(const char *str)
 		}
 		i++;
 	}
-	return (i == 6 || i == 8);
+	return (j == 6 || j == 8);
 }
 
 int	check_chunk(const char *str, const int ret)
 {
-	size_t	i;
-	size_t	j;
-	size_t	k;
+	int	i;
+	int	j;
+	int	k;
 
 	i = 0;
 	k = 0;
 	while (i < 20)
-	{
+	{	
 		j = 0;
 		while (j < 4)
 		{
-			if (str[i + j] != '.' || str[i + j] != '#')
+			if (str[i + j] != '.' && str[i + j] != '#')
 				return (0);
 			else if(str[i + j] == '#' && ++k > 4)
 				return (0);
@@ -108,29 +109,58 @@ int	check_chunk(const char *str, const int ret)
 	}
 	if (ret == 21 && str[i] != '\n')
 		return (0);
-	if (!(check_adja(str)))
+	if (!check_adja(str))
 		return (0);
 	return (1);
 }
 
-int	pull_list(const int fd, t_etris *list)
+int	pull_list(const int fd, t_control *gofirst)
 {
-	char		buf[22];
-	int			ret;
 	char		id;
-	int			i;
+	int			ret;
+	char		buf[22];
+	t_etris	*tetri;
+	t_etris *new;
 
 	id = 'A';
-	i = 0;
 	while ((ret = read(fd, buf, 21)) >= 20)
 	{
+		printf("1.1\n");
 		if (!(check_chunk(buf, ret)))
-			return (1);
-		list[i] = write_tetri(buf, id++);
-		list->next = &list[i + 1];
-		i++;
+			return (0);
+//		if (!(tetri = ft_memalloc(sizeof(*tetri))))
+//		{
+//			printf("1.2\n");
+//			return (0);
+//		}
+		printf("1.3\n");
+		if (id == 'A')
+		{
+			printf("1.4\n");
+			if(!(tetri = ft_memalloc(sizeof(*tetri))))
+				return (0);
+//			tetri = write_tetri(buf, id++);
+			write_tetri(buf, tetri, id++);
+			printf("1.5\n");
+			gofirst->first = tetri;
+			printf("1.6\n");
+		}	
+		else
+		{
+			printf("1.7\n");
+			if(!(new = ft_memalloc(sizeof(*tetri))))
+				return (0);
+			if (id == 'B')
+				tetri->next = new;
+			write_tetri(buf, new, id++);
+			new->next = new;
+			printf("1.8\n");
+//			if(!(tetri = ft_memalloc(sizeof(*tetri))))
+//			return (0);
+		}
 	}
-	if (ret > 0)
+	gofirst->i = id - 'A';
+	if (ret != 0)
 		return (0);
 	return (id - 'A');	
 }
