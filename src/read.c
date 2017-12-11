@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 16:07:42 by cmiran            #+#    #+#             */
-/*   Updated: 2017/12/11 19:23:23 by cmiran           ###   ########.fr       */
+/*   Updated: 2017/12/11 19:43:54 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	write_tetri(const char *str, t_etris *tetri, char id)
 }
 
 /*
-** Check if each # is adjacent to another.
+** Check if each '#' is adjacent to another.
 ** If there is 6 or 8 connections, the tetriminos is valid.
 */
 
@@ -98,9 +98,8 @@ int	check_adja(const char *str)
 }
 
 /*
-** Check the buf from read.
-** For each chunk must contain a 4 * 4 bloc,
-** with only 20 char, '.', 5 * '\n', 4 * '#'.
+** Check the buf from read. For each chunk must contain a 4 * 5 bloc,
+** with only 21 char : '.', five '\n' and four '#'.
 */
 
 int	check_chunk(const char *str, const int ret)
