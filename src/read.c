@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 16:07:42 by cmiran            #+#    #+#             */
-/*   Updated: 2017/12/11 17:30:10 by cmiran           ###   ########.fr       */
+/*   Updated: 2017/12/11 17:56:15 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,10 +150,9 @@ int	pull_list(const int fd, t_control *gofirst)
 			printf("1.7\n");
 			if(!(new = ft_memalloc(sizeof(*tetri))))
 				return (0);
-			if (id == 'B')
-				tetri->next = new;
 			write_tetri(buf, new, id++);
-			new->next = new;
+			new->next = gofirst->first;
+			gofirst->first = new;
 			printf("1.8\n");
 //			if(!(tetri = ft_memalloc(sizeof(*tetri))))
 //			return (0);
