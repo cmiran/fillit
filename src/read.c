@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 16:07:42 by cmiran            #+#    #+#             */
-/*   Updated: 2017/12/11 19:43:54 by cmiran           ###   ########.fr       */
+/*   Updated: 2017/12/11 19:47:59 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	get_pos(const char *str, int *x, int *y)
 }
 
 /*
-** Create a tetriminos with its coordinates on the chunk and id.
+** Create a tetrimino with its id & coordinates on the chunk.
 */
 
 void	write_tetri(const char *str, t_etris *tetri, char id)
@@ -57,19 +57,19 @@ void	write_tetri(const char *str, t_etris *tetri, char id)
 
 	i = 0;
 	get_pos(str, x, y);
+	tetri->id = id;
 	while (i < 4)
 	{
 		tetri->x[i] = x[i];
 		tetri->y[i] = y[i];
 		i++;
 	}
-	tetri->id = id;
 	tetri->next = NULL;
 }
 
 /*
 ** Check if each '#' is adjacent to another.
-** If there is 6 or 8 connections, the tetriminos is valid.
+** If there is 6 or 8 connections, the tetrimino is valid.
 */
 
 int	check_adja(const char *str)
@@ -98,8 +98,8 @@ int	check_adja(const char *str)
 }
 
 /*
-** Check the buf from read. For each chunk must contain a 4 * 5 bloc,
-** with only 21 char : '.', five '\n' and four '#'.
+** Check the buf from read. For each chunk must contains a 4 * 5 bloc,
+** with only 21 char : '.', five '\n' & four '#'.
 */
 
 int	check_chunk(const char *str, const int ret)
@@ -133,7 +133,7 @@ int	check_chunk(const char *str, const int ret)
 }
 
 /*
-** Assuming the input is valid, malloc a s_etris for each tetriminos,
+** Assuming the input is valid, malloc a s_etris for each tetrimino,
 ** in a linked list.
 ** C'EST ICI QUE JE PENSE EN FAIRE TROP OU LOUPER QUELQUE CHOSE,
 ** J'AIMERAIS POINTER GOFISRT SUR LE PREMIER TETRIMINOS RECU, OR LA EN SORTIE,
