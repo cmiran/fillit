@@ -6,66 +6,12 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 16:07:42 by cmiran            #+#    #+#             */
-/*   Updated: 2017/12/11 19:57:37 by cmiran           ###   ########.fr       */
+/*   Updated: 2017/12/12 01:13:39 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fillit.h"
 #include "../include/libft.h"
-
-/*
-** Get abscissa and ordinate for each '#'.
-** JE PENSE QUE LA IL FAUT AUPARAVANT RAMNER CHAQUE TETRIMINOS
-** DANS LE COIN HAUT GAUCHE DU BUFFER. PEUT ETRE EST IL POSSIBLE DE FAIRE CA
-** AVEC UN CALCUL.
-*/
-
-void	get_pos(const char *str, int *x, int *y)
-{
-	int	i;
-	int	j;
-	int	k;
-
-	i = 0;
-	k = 0;
-	while (i < 20)
-	{
-		j = 0;
-		while (j < 4)
-		{
-			if (str[i + j] == '#')
-			{
-				*x++ = j;
-				*y++ = k;
-			}
-			j++;
-		}
-		i += j + 1;
-		k++;
-	}
-}
-
-/*
-** Create a tetrimino with its id & coordinates on the chunk.
-*/
-
-void	write_tetri(const char *str, t_etris *tetri, char id)
-{
-	int	i;
-	int	x[4];
-	int	y[4];
-
-	i = 0;
-	get_pos(str, x, y);
-	tetri->id = id;
-	while (i < 4)
-	{
-		tetri->x[i] = x[i];
-		tetri->y[i] = y[i];
-		i++;
-	}
-	tetri->next = NULL;
-}
 
 /*
 ** Check if each '#' is adjacent to another.
