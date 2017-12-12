@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 00:35:21 by cmiran            #+#    #+#             */
-/*   Updated: 2017/12/12 14:43:32 by cmiran           ###   ########.fr       */
+/*   Updated: 2017/12/12 19:38:11 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,52 +17,50 @@
 ** Justify y to the top.
 */
 
-void	go_y_up(int *y)
+void	go_y_up(int *y, int *y_check)
 {
 	int	i;
-	int	y_check;
 
 	i = 0;
-	while (y[i])
+	while (i < 4)
 	{
 		y[i] -= 1;
 		i++;
 	}
 	i = 0;
-	while (y[i])
+	while (i < 4)
 	{
 		if (y[i] == 0)
-			y_check = 1;
+			*y_check = 1;
 		i++;
 	}
-	if (y_check != 1)
-		go_y_up(y);
+	if (*y_check != 1)
+		go_y_up(y, y_check);
 }
 
 /*
 ** Justify x to the left.
 */
 
-void	go_x_left(int *x)
+void	go_x_left(int *x, int *x_check)
 {
 	int	i;
-	int	x_check;
 
 	i = 0;
-	while (x[i])
+	while (i < 4)
 	{
 		x[i] -= 1;
 		i++;
 	}
 	i = 0;
-	while (x[i])
+	while (i < 4)
 	{
 		if (x[i] == 0)
-			x_check = 1;
+			*x_check = 1;
 		i++;
 	}
-	if (x_check != 1)
-		go_x_left(x);
+	if (*x_check != 1)
+		go_x_left(x, x_check);
 }
 
 /*
@@ -75,22 +73,22 @@ void	is_top_left(int *x, int *y)
 	int	i;
 	int	x_check;
 	int	y_check;
-	
+
 	i = 0;
-	while (x[i] && y[i])
+	while (i < 4)
 	{
 		if (x[i] == 0)
 			x_check = 1;
 		if (y[i] == 0)
 			y_check = 1;
-		if (x_check + y_check == 2)
+		if (x_check == 1 && y_check == 1)
 			return ;
 		i++;
 	}
 	if (x_check != 1)
-		go_x_left(x);
+		go_x_left(x, &x_check);
 	if (y_check != 1)
-		go_y_up(y);
+		go_y_up(y, &y_check);
 }
 
 /*
