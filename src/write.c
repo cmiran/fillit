@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 00:35:21 by cmiran            #+#    #+#             */
-/*   Updated: 2017/12/12 11:33:34 by cmiran           ###   ########.fr       */
+/*   Updated: 2017/12/12 17:01:33 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../include/libft.h"
 
 /*
-** Justify y to the up.
+** Justify y to the top.
 */
 
 void	go_y_up(int *y)
@@ -67,7 +67,7 @@ void	go_x_left(int *x)
 
 /*
 ** Check if there is a least one '0' in string x & string y.
-** If there is, the tetrimino is margined.
+** If true, the tetrimino is margined.
 */
 
 void	is_top_left(int *x, int *y)
