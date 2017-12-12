@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 00:35:21 by cmiran            #+#    #+#             */
-/*   Updated: 2017/12/12 17:01:33 by cmiran           ###   ########.fr       */
+/*   Updated: 2017/12/12 18:37:06 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void	go_y_up(int *y)
 	int	y_check;
 
 	i = 0;
-	while (y[i])
+	while (i < 4)
 	{
 		y[i] -= 1;
 		i++;
 	}
 	i = 0;
-	while (y[i])
+	while (i < 4)
 	{
 		if (y[i] == 0)
 			y_check = 1;
@@ -49,13 +49,13 @@ void	go_x_left(int *x)
 	int	x_check;
 
 	i = 0;
-	while (x[i])
+	while (i < 4)
 	{
 		x[i] -= 1;
 		i++;
 	}
 	i = 0;
-	while (x[i])
+	while (i < 4)
 	{
 		if (x[i] == 0)
 			x_check = 1;
@@ -75,15 +75,15 @@ void	is_top_left(int *x, int *y)
 	int	i;
 	int	x_check;
 	int	y_check;
-	
+
 	i = 0;
-	while (x[i] && y[i])
+	while (i < 4)
 	{
 		if (x[i] == 0)
 			x_check = 1;
 		if (y[i] == 0)
 			y_check = 1;
-		if (x_check + y_check == 2)
+		if (x_check == 1 && y_check == 1)
 			return ;
 		i++;
 	}
