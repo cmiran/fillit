@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 17:21:35 by cmiran            #+#    #+#             */
-/*   Updated: 2017/12/13 02:36:50 by cmiran           ###   ########.fr       */
+/*   Updated: 2017/12/13 02:46:38 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	print_list(t_control *gofirst)
 	{
 		i = 0;
 		printf("#########################\n");
-		printf("#  id ->  %c		#\n", current->id);
-		printf("#   X ->  ");
+		printf("#  id  ->  %c		#\n", current->id);
+		printf("#   X  ->  ");
 		while (i < 4)
 			printf("%d  ", current->x[i++]);
 		i = 0;
-		printf("	#\n#   Y ->  ");
+		printf("	#\n#   Y  ->  ");
 		while (i < 4)
 			printf("%d  ", current->y[i++]);
 		printf("	#\n");
