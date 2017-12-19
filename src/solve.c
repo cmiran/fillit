@@ -6,7 +6,7 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2017/12/13 18:56:45 by obadaoui         ###   ########.fr       */
+/*   Updated: 2017/12/19 18:25:16 by obadaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,16 @@ char	**square_creator(int width)
 ** have been sent by the backtracker.
 */
 
-int		copy_cat(char id, char *pos)
+void	copy_cat(char **position, t_etris *current)
 {
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		position[current->x[i]][current->y[i]] = current->id;
+		i++;
+	}
 }
 
 /*
@@ -50,8 +58,26 @@ int		copy_cat(char id, char *pos)
 ** or to go back and find another solution.
 */
 
-int	backtracker(char *position, t_etris *current)
+int	backtracker(char **position, t_etris *current)
 {
+	int	i;
+
+	i = 0;
+	if (current == NULL)
+		return (1);
+	while (position[current->x[i]][current->y[i]] &&
+			position[current->x[i]][current->y[i]] == '.' && i < 4)
+		i++;
+	if (i == 4)
+	{
+		copy_cat(position, current);
+		backtracker(position, current->next);
+	}
+	else if (!position[current->x[i]][current->y[i]])
+	{
+		
+	}
+
 }
 
 /*
@@ -68,7 +94,7 @@ int		solve(t_control *gofirst)
 	while (width * width < (gofirst->i) * 4)
 		width++;
 	square = square_creator(width);
-	if (backtracker(&square[0][0], gofirst->first))
+	if (backtracker(square, gofirst->first))
 	{
 		print_solution(square);
 		return (1);
