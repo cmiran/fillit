@@ -6,7 +6,7 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2017/12/19 18:25:16 by obadaoui         ###   ########.fr       */
+/*   Updated: 2017/12/19 19:19:10 by obadaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,8 @@ int	backtracker(char **position, t_etris *current)
 	}
 	else if (!position[current->x[i]][current->y[i]])
 	{
-		
+		...
 	}
-
 }
 
 /*
@@ -88,15 +87,15 @@ int	backtracker(char **position, t_etris *current)
 int		solve(t_control *gofirst)
 {
 	int		width;
-	char	**square;
+	char **square;
 
 	width = 2;
 	while (width * width < (gofirst->i) * 4)
 		width++;
 	square = square_creator(width);
-	if (backtracker(square, gofirst->first))
-	{
-		print_solution(square);
-		return (1);
-	}
+	while (!backtracker(square, gofirst->first))
+		square = square_creator(++width);
+...
+	print_solution(square);
+	return (1);
 }
