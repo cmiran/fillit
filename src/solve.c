@@ -6,7 +6,7 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2017/12/19 19:19:10 by obadaoui         ###   ########.fr       */
+/*   Updated: 2017/12/20 18:24:00 by obadaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,25 +58,32 @@ void	copy_cat(char **position, t_etris *current)
 ** or to go back and find another solution.
 */
 
-int	backtracker(char **position, t_etris *current)
+int	backtracker(char **position, int track, t_etris *curr, t_control *gofirst,
+		char *debut)
 {
 	int	i;
 
 	i = 0;
-	if (current == NULL)
+	if (curr == NULL)
 		return (1);
-	while (position[current->x[i]][current->y[i]] &&
-			position[current->x[i]][current->y[i]] == '.' && i < 4)
+	while (position[curr->x[i]][curr->y[i]] &&
+			position[curr->x[i]][curr->y[i]] == '.' && i < 4)
 		i++;
 	if (i == 4)
 	{
-		copy_cat(position, current);
-		backtracker(position, current->next);
+		copy_cat(position, curr);
+		curr = curr->next;
 	}
-	else if (!position[current->x[i]][current->y[i]])
+	if (position[0][1])
+		*position = &position[0][1];
+	else if (position[1][-track])
 	{
-		...
+		*position = &position[0][-track];
+		track = -1;
 	}
+	else
+		return (backtracker(position
+	return (backtracker(position, track++, curr));
 }
 
 /*
@@ -87,15 +94,21 @@ int	backtracker(char **position, t_etris *current)
 int		solve(t_control *gofirst)
 {
 	int		width;
-	char **square;
+	char	**square;
+	int		track;
+	char	*debut;
 
 	width = 2;
+	track = 0;
 	while (width * width < (gofirst->i) * 4)
 		width++;
 	square = square_creator(width);
-	while (!backtracker(square, gofirst->first))
+	*debut = square;
+	while (!backtracker(square, track, gofirst->first))
+	{
 		square = square_creator(++width);
-...
+		*debut = square;
+	}
 	print_solution(square);
 	return (1);
 }
