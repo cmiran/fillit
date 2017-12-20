@@ -6,7 +6,7 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2017/12/20 19:29:22 by obadaoui         ###   ########.fr       */
+/*   Updated: 2017/12/20 19:49:44 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,21 @@
 ** Create the square that our algorithm will fill with the tetriminos.
 */
 
-char	**square_creator(int width, char *debut)
+char	**init_map(char **map, char *debut, unsigned int width)
 {
-	char	**square;
-	int		i;
-	int		j;
+	int	i;
 
 	i = 0;
-	square = (char**)malloc(sizeof(char*) * width);
-	*square = (char*)malloc(sizeof(char) * width + 1);
-	while (j <= width)
+	if (!(map = (char **)malloc(sizeof(char *) * width)))
+		return (0);
+	while (map[i])
 	{
-		while (i <= width)
-			square[j][i++] = '.';
-		square[j][i] = '\n';
-		j++;
+		if (!(map[i] = ft_strcnew(width, '.')))
+			return (0);
+		i++;
 	}
-	debut = &square[0][0];
-	return (square);
+	debut = &map[0][0];
+	return (map);
 }
 
 /*
@@ -91,19 +88,19 @@ int		backtracker(char **position, int track, t_etris *curr, t_control *gofirst,
 int		solve(t_control *gofirst)
 {
 	int		width;
-	char	**square;
+	char	**map;
 	int		track;
 	char	*debut;
 
 	width = 2;
 	track = 0;
-	while (width * width < (gofirst->i) * 4)
+	while ((size_t)(width * width) < (gofirst->i) * 4)
 		width++;
-	square = square_creator(width, debut);
-	while (!backtracker(square, track, gofirst->first))
+	init_map(map, debut, width);
+	while (!backtracker(map, track, gofirst->first))
 	{
-		square = square_creator(++width, debut);
+		init_map(map, debut, ++width);
 	}
-	print_solution(square);
+	print_solution(map);
 	return (1);
 }
