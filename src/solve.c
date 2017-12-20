@@ -6,7 +6,7 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2017/12/20 19:49:44 by cmiran           ###   ########.fr       */
+/*   Updated: 2017/12/20 20:00:10 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** Create the square that our algorithm will fill with the tetriminos.
 */
 
-char	**init_map(char **map, char *debut, unsigned int width)
+char	**init_map(char **map, char **debut, unsigned int width)
 {
 	int	i;
 
@@ -30,7 +30,7 @@ char	**init_map(char **map, char *debut, unsigned int width)
 			return (0);
 		i++;
 	}
-	debut = &map[0][0];
+	*debut = &map[0][0];
 	return (map);
 }
 
@@ -96,10 +96,10 @@ int		solve(t_control *gofirst)
 	track = 0;
 	while ((size_t)(width * width) < (gofirst->i) * 4)
 		width++;
-	init_map(map, debut, width);
+	init_map(map, &debut, width);
 	while (!backtracker(map, track, gofirst->first))
 	{
-		init_map(map, debut, ++width);
+		init_map(map, &debut, ++width);
 	}
 	print_solution(map);
 	return (1);
