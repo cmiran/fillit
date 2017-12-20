@@ -6,7 +6,7 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2017/12/20 18:27:32 by obadaoui         ###   ########.fr       */
+/*   Updated: 2017/12/20 19:29:22 by obadaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** Create the square that our algorithm will fill with the tetriminos.
 */
 
-char	**square_creator(int width)
+char	**square_creator(int width, char *debut)
 {
 	char	**square;
 	int		i;
@@ -33,6 +33,7 @@ char	**square_creator(int width)
 		square[j][i] = '\n';
 		j++;
 	}
+	debut = &square[0][0];
 	return (square);
 }
 
@@ -51,6 +52,7 @@ void	copy_cat(char **position, t_etris *current)
 		position[current->x[i]][current->y[i]] = current->id;
 		i++;
 	}
+	current = current->next;
 }
 
 /*
@@ -58,7 +60,7 @@ void	copy_cat(char **position, t_etris *current)
 ** or to go back and find another solution.
 */
 
-int	backtracker(char **position, int track, t_etris *curr, t_control *gofirst,
+int		backtracker(char **position, int track, t_etris *curr, t_control *gofirst,
 		char *debut)
 {
 	int	i;
@@ -70,20 +72,15 @@ int	backtracker(char **position, int track, t_etris *curr, t_control *gofirst,
 			position[curr->x[i]][curr->y[i]] == '.' && i < 4)
 		i++;
 	if (i == 4)
-	{
 		copy_cat(position, curr);
-		curr = curr->next;
-	}
 	if (position[0][1])
 		*position = &position[0][1];
 	else if (position[1][-track])
-	{
 		*position = &position[0][-track];
-		track = -1;
-	}
+	if (!position[0][1] && !position[1][0])
+		return (backtracker(debut, 0, ...)
 	else
-		return (backtracker(position
-	return (backtracker(position, track++, curr));
+		return (i = 4 ? backtracker(debut, 0, curr) : backtracker(position, track++, curr);
 }
 
 /*
@@ -102,12 +99,10 @@ int		solve(t_control *gofirst)
 	track = 0;
 	while (width * width < (gofirst->i) * 4)
 		width++;
-	square = square_creator(width);
-	debut = &square[0][0];
+	square = square_creator(width, debut);
 	while (!backtracker(square, track, gofirst->first))
 	{
-		square = square_creator(++width);
-		debut = &square[0][0];
+		square = square_creator(++width, debut);
 	}
 	print_solution(square);
 	return (1);
