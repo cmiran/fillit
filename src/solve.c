@@ -6,7 +6,7 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2017/12/20 18:24:00 by obadaoui         ###   ########.fr       */
+/*   Updated: 2017/12/20 18:27:32 by obadaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,11 +103,11 @@ int		solve(t_control *gofirst)
 	while (width * width < (gofirst->i) * 4)
 		width++;
 	square = square_creator(width);
-	*debut = square;
+	debut = &square[0][0];
 	while (!backtracker(square, track, gofirst->first))
 	{
 		square = square_creator(++width);
-		*debut = square;
+		debut = &square[0][0];
 	}
 	print_solution(square);
 	return (1);
