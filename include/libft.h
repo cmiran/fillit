@@ -6,7 +6,7 @@
 /*   By: cmiran <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 08:40:10 by cmiran            #+#    #+#             */
-/*   Updated: 2017/12/20 14:37:22 by cmiran           ###   ########.fr       */
+/*   Updated: 2017/12/20 19:37:12 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct	s_list
 }				t_list;
 int				ft_atoi(const char *str);
 void			ft_bzero(void *s, size_t n);
+void			ft_freetab(char **tab);
 int				ft_isalnum(int c);
 int				ft_isalpha(int c);
 int				ft_isascii(int c);
@@ -64,6 +65,8 @@ void			ft_putnbr(int n);
 void			ft_putnbr_fd(int n, int fd);
 void			ft_putstr(const char *s);
 void			ft_putstr_fd(const char *s, int fd);
+void			ft_puttab(const char **tab);
+void			ft_puttab_fd(const char **tab, int fd);
 int				ft_str_is_alpha(char *str);
 int				ft_str_is_lowercase(char *str);
 int				ft_str_is_numeric(char *str);
@@ -107,7 +110,6 @@ char			*ft_strstr(const char *haystack, const char *needle);
 char			*ft_strsub(char const *s, unsigned int start, size_t len);
 char			*ft_strtrim(char const *s);
 char			*ft_strupcase(char *str);
-void			ft_tabfree(void **tab);
 int				ft_tolower(int c);
 int				ft_toupper(int c);
 

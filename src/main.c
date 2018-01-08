@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 17:21:35 by cmiran            #+#    #+#             */
-/*   Updated: 2017/12/13 02:46:38 by cmiran           ###   ########.fr       */
+/*   Updated: 2017/12/24 17:07:49 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int	main(int argc, char **argv)
 	 return (kill());
 	if(!(pull_list(fd, gofirst)))
 		return (kill());
-	print_list(gofirst);
+//	print_list(gofirst);
+	if (!solve(gofirst))
+		return (kill());
 	return (0);
 }
