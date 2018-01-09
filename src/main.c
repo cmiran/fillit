@@ -6,39 +6,12 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 17:21:35 by cmiran            #+#    #+#             */
-/*   Updated: 2017/12/24 17:07:49 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/09 18:30:09 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fillit.h"
 #include "../include/libft.h"
-
-void	print_list(t_control *gofirst)
-{
-	t_etris	*current;
-	int			i;
-	
-	printf("#########################\n");
-	printf("#  nbr tetriminos : %d  #\n", gofirst->i);
-	printf("#########################\n");
-	current = gofirst->first;
-	while (current != NULL)
-	{
-		i = 0;
-		printf("#########################\n");
-		printf("#  id  ->  %c		#\n", current->id);
-		printf("#   X  ->  ");
-		while (i < 4)
-			printf("%d  ", current->x[i++]);
-		i = 0;
-		printf("	#\n#   Y  ->  ");
-		while (i < 4)
-			printf("%d  ", current->y[i++]);
-		printf("	#\n");
-		printf("#########################\n");
-		current = current->next;
-	}
-}
 
 int	kill(void)
 {
@@ -63,7 +36,7 @@ int	main(int argc, char **argv)
 	if(!(pull_list(fd, gofirst)))
 		return (kill());
 //	print_list(gofirst);
-	if (!solve(gofirst))
+	if (!solve_map(gofirst))
 		return (kill());
 	return (0);
 }
