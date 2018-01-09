@@ -6,7 +6,7 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2018/01/09 18:02:09 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/09 18:24:45 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	 backtracker(t_map *map, t_etris *curr)
 ** fill it, and checks if everything's fine.
 */
 
-int		solve(t_control *gofirst)
+int		solve_map(t_control *gofirst)
 {
 	t_map	*map;
 	int 	i;
