@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 17:21:35 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/09 18:30:09 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/09 18:59:20 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ int	main(int argc, char **argv)
 //	print_list(gofirst);
 	if (!solve_map(gofirst))
 		return (kill());
-	return (0);
+	exit(EXIT_SUCCESS);
 }
