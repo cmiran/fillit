@@ -6,7 +6,7 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2018/01/09 18:24:45 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/09 19:00:34 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ int	 backtracker(t_map *map, t_etris *curr)
 {
 	unsigned int	pos;
 	int						i;
-	unsigned int	x;
-	unsigned int	y;
+	int						x;
+	int						y;
 
 	if (curr == NULL)
 		return (1);
