@@ -6,7 +6,7 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2017/12/31 11:58:06 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/09 18:02:09 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
 
 int	init_map(t_map *map)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
-	if (!(map->map = (char **)malloc(sizeof(char *) * map->width)))
+	if (!(map->map = (char **)malloc(sizeof(char *) * map->width + 1)))
 		return (0);
-	while (map->map[i])
+	while (i < map->width)
 	{
 		if (!(map->map[i] = ft_strcnew(map->width, '.')))
 		{
@@ -33,6 +33,7 @@ int	init_map(t_map *map)
 		}
 		i++;
 	}
+	map->map[i] = NULL;
 	return (1);
 }
 
@@ -41,82 +42,51 @@ int	init_map(t_map *map)
 ** have been sent by the backtracker.
 */
 
-void	fill_map(t_map *pos, t_etris *curr, int x, int y)
+void	fill_map(t_map *pos, t_etris *curr, int x, int y, char c)
 {
 	int	i;
 
 	i = 0;
 	while (i < 4)
 	{
-		pos->map[x + curr->x[i]][y + curr->y[i]] = curr->id;
+		pos->map[y + curr->y[i]][x + curr->x[i]] = c;
 		i++;
 	}
-	//curr = curr->next;
 }
-/*
-int		check_pos(t_map *pos, t_etris *curr)
-{
-	int	i;
-	int	x;
-	int	y;
-	
-	if (curr = NULL)
-		return (1);
-	y = 0;
-	while (pos->map[y + curr->y[i]])
-	{
-		x = 0;
-		i = 0;
-		while (pos->map[y + curr->y[i]][x + curr->x[i]] &&
-			pos->map[y + curr->y[i]][x + curr->x[i]] == '.')
-		{
-			i++;
-			if (i == 4)
-				fill_map(pos, curr, x, y);
 
-}
-*/
 /*
 ** Backtracking algorithm that call himself back to continue the filling
 ** or to go back and find another solution.
 */
 
-int		backtracker(t_map *pos, t_etris *curr, int x, int y)
+int	 backtracker(t_map *map, t_etris *curr)
 {
-	int	i;
+	unsigned int	pos;
+	int						i;
+	unsigned int	x;
+	unsigned int	y;
 
-	ft_putendl("4.1.1");
 	if (curr == NULL)
 		return (1);
-	i = 0;
-	ft_putendl("4.1.2");
-	while (pos->map[y + curr->y[i]][x + curr->x[i]] &&
-			pos->map[y + curr->y[i]][x + curr->x[i]] == '.' && i < 4)
+	pos = 0;
+	while (pos < map->width * map->width)
 	{
-		i++;
-		ft_putendl("4.1.2.1");
+		i = 0;
+		x = pos % map->width;
+		y = pos / map->width;
+		while (i < 4 && y + curr->y[i] < map->width && x + curr->x[i] < map->width
+				&& map->map[y + curr->y[i]][x + curr->x[i]] == '.')
+			i++;
+		if (i == 4)
+		{
+			fill_map(map, curr, x, y, curr->id);
+			if (backtracker(map, curr->next))
+				return (1);
+			fill_map(map, curr, x, y, '.');
+		}
+		pos++;
 	}
-	ft_putendl("4.1.3");
-	if (i == 4)
-	{
-		ft_putendl("4.1.3.1");
-		fill_map(pos, curr, x, y);
-		ft_putendl("4.1.3.2");
-		return (backtracker(pos, curr->next, x++, y));
-	}
-	ft_putendl("4.1.4");
-	if (pos->map[y][x] == '\0')
-	{
-		ft_putendl("4.1.4.1");
-		return (backtracker(pos, curr, x = 0, y++));
-	}
-	else if (!pos->map[y])
-	{
-		ft_putendl("4.1.5.1");
-		return (0);
-	}
-	ft_putendl("4.1.6");
-	return (backtracker(pos, curr, x++, y) || (0));
+	return (0);
 }
 
 /*
@@ -127,42 +97,29 @@ int		backtracker(t_map *pos, t_etris *curr, int x, int y)
 int		solve(t_control *gofirst)
 {
 	t_map	*map;
-	int		x;
-	int		y;
+	int 	i;
 
-	ft_putendl("1");
 	if (!(map = (t_map *)malloc(sizeof(t_map))))
 		return (0);
 	map->width = 2;
-	ft_putendl("2");
 	while ((map->width * map->width) < (gofirst->i) * 4)
-	{
-		printf("width = %d\n", map->width);
-		ft_putendl("2.1");
 		map->width++;
-		printf("width = %d\n", map->width);
-	}
-	ft_putendl("3");
 	if (!init_map(map))
 	{
-		ft_putendl("3.1");
 		ft_memdel((void **)map);
 		return (0);
 	}
-	ft_putendl("4");
-	while (!backtracker(map, gofirst->first, x = 0, y = 0))
+	i = 0;
+	while (!backtracker(map, gofirst->first))
 	{
-		ft_putendl("4.1");
 		ft_freetab(map->map);
 		map->width++;
-		ft_putendl("4.2");
-		printf("width = %d\n", map->width);
 		if (!init_map(map))
 		{
 			ft_memdel((void **)map);
 			return (0);
 		}
-		ft_putendl("4.3");
+		i++;
 	}
 	ft_puttab((const char **)map->map);
 	return (1);
