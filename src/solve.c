@@ -6,7 +6,7 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2018/01/09 19:00:34 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/09 23:45:53 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../include/libft.h"
 
 /*
-** Create the square that our algorithm will fill with tetriminos.
+** Create the square that the algorithm will fill with tetriminos.
 */
 
 int	init_map(t_map *map)
@@ -74,7 +74,7 @@ int	 backtracker(t_map *map, t_etris *curr)
 		i = 0;
 		x = pos % map->width;
 		y = pos / map->width;
-		while (i < 4 && y + curr->y[i] < map->width && x + curr->x[i] < map->width
+		while (i < 4 && y + curr->y[i] < map->width	&& x + curr->x[i] < map->width
 				&& map->map[y + curr->y[i]][x + curr->x[i]] == '.')
 			i++;
 		if (i == 4)
@@ -90,11 +90,11 @@ int	 backtracker(t_map *map, t_etris *curr)
 }
 
 /*
-** Main fonction that call others fonctions to create the solution square,
+** Main fonction that calls others fonctions to create the matrix,
 ** fill it, and checks if everything's fine.
 */
 
-int		solve_map(t_control *gofirst)
+t_map		*solve_map(t_control *gofirst)
 {
 	t_map	*map;
 	int 	i;
@@ -121,6 +121,5 @@ int		solve_map(t_control *gofirst)
 		}
 		i++;
 	}
-	ft_puttab((const char **)map->map);
-	return (1);
+	return (map);
 }
