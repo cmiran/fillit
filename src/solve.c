@@ -6,7 +6,7 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2018/01/09 23:45:53 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/10 01:20:42 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ int	 backtracker(t_map *map, t_etris *curr)
 t_map		*solve_map(t_control *gofirst)
 {
 	t_map	*map;
-	int 	i;
 
 	if (!(map = (t_map *)malloc(sizeof(t_map))))
 		return (0);
@@ -109,7 +108,6 @@ t_map		*solve_map(t_control *gofirst)
 		ft_memdel((void **)map);
 		return (0);
 	}
-	i = 0;
 	while (!backtracker(map, gofirst->first))
 	{
 		ft_freetab(map->map);
@@ -119,7 +117,6 @@ t_map		*solve_map(t_control *gofirst)
 			ft_memdel((void **)map);
 			return (0);
 		}
-		i++;
 	}
 	return (map);
 }
