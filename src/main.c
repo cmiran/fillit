@@ -6,12 +6,12 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 17:21:35 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/10 01:20:58 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/10 15:15:57 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fillit.h"
-#include "../include/libft.h"
+#include "fillit.h"
+#include "libft.h"
 
 int	kill(char *str)
 {
@@ -33,6 +33,7 @@ int	main(int argc, char **argv)
 	 return (kill("error"));
 	if((gofirst->i = pull_list(fd, gofirst)) == 0)
 		return (kill("error"));
+	close(fd);
 	if ((map = solve_map(gofirst)))
 	{
 		ft_puttab((const char **)map->map);

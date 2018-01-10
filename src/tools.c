@@ -6,12 +6,12 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 18:29:45 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/09 18:29:53 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/10 15:16:48 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fillit.h"
-#include "../include/libft.h"
+#include "fillit.h"
+#include "libft.h"
 
 void	print_list(t_control *gofirst)
 {
