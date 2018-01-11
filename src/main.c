@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 17:21:35 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/11 01:38:34 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/11 01:52:47 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 	 return (kill("error: failed to open file"));
 	if((gofirst->i = pull_list(fd, gofirst)) < 1)
-		return (kill("error: empty file"));
+		return (kill("error: bad input"));
 	close(fd);
 	if ((map = solve_map(gofirst)))
 	{
