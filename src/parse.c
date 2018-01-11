@@ -6,12 +6,12 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 16:07:42 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/10 17:54:09 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/11 01:38:10 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
-#include "libft.h"
+#include "../include/fillit.h"
+#include "../include/libft.h"
 
 /*
 ** Check if each '#' is adjacent to another.

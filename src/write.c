@@ -6,12 +6,12 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 00:35:21 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/10 15:17:04 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/11 01:37:51 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
-#include "libft.h"
+#include "../include/fillit.h"
+#include "../include/libft.h"
 
 /*
 ** Justify y to the top.
