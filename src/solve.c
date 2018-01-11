@@ -6,7 +6,7 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2018/01/10 15:54:37 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/11 01:20:13 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	init_map(t_map *map)
 	{
 		if (!(map->map[i] = ft_strcnew(map->width, '.')))
 		{
-			ft_freetab(map->map);
+			ft_freetab(&map->map);
 			return (0);
 		}
 		i++;
@@ -110,7 +110,7 @@ t_map	*solve_map(t_control *gofirst)
 	}
 	while (!backtracker(map, gofirst->first))
 	{
-		ft_freetab(map->map);
+		ft_freetab(&map->map);
 		map->width++;
 		if (!init_map(map))
 		{
