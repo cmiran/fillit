@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 17:21:35 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/15 19:55:38 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/15 21:18:00 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv)
 		return (kill("error"));
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 	 return (kill("error"));	
-	if ((gofirst->i = pull_list(fd, gofirst, tetri = NULL, tmp = NULL)) < 1)
+	if ((gofirst->i = pull_list(fd, gofirst, tetri = NULL, tmp = gofirst)) < 1)
 		return (kill("error"));
 	close(fd);
 	if ((map = solve_map(gofirst)))
