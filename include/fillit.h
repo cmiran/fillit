@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 15:47:41 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/15 18:01:09 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/15 19:49:20 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct	s_map
 	char		**map;
 }		t_map;
 
-int		pull_list(const int fd, t_etris *list);
+int		pull_list(const int fd, t_etris *list, t_etris *tetri, t_etris *tmp);
 void		write_tetri(const char *str, t_etris *tetri, char id);
 t_map		*solve_map(t_etris *gofirst);
 #endif

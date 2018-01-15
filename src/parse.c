@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 16:07:42 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/15 18:25:00 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/15 19:51:36 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,11 @@ int	check_chunk(const char *str, const int ret)
 ** in a linked list.
 */
 
-int	pull_list(const int fd, t_etris *gofirst)
+int	pull_list(const int fd, t_etris *gofirst, t_etris *tetri, t_etris *tmp)
 {
 	char		id;
 	int			ret;
 	char		buf[22];
-	t_etris	*tetri;
-	t_etris	*tmp;
 
 	id = 'A';
 	while ((ret = read(fd, buf, 21)) >= 20)
