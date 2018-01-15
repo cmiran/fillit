@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 16:07:42 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/11 01:38:10 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/15 18:00:45 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,19 +81,15 @@ int	check_chunk(const char *str, const int ret)
 /*
 ** Assuming the input is valid, malloc a s_etris for each tetrimino,
 ** in a linked list.
-** C'EST ICI QUE JE PENSE EN FAIRE TROP OU LOUPER QUELQUE CHOSE,
-** J'AIMERAIS POINTER GOFISRT SUR LE PREMIER TETRIMINOS RECU, OR LA EN SORTIE,
-** LE PREMIER EST MON DERNIER ET AINSI DE SUITE.
-** MAIS JE NE SAIS PAS SI CA A UNE GRANDE IMPORTANCE AU FINAL.
 */
 
-int	pull_list(const int fd, t_control *gofirst)
+int	pull_list(const int fd, t_etris *gofirst)
 {
 	char		id;
 	int			ret;
 	char		buf[22];
 	t_etris	*tetri;
-	t_etris *new;
+	t_etris	*tmp;
 
 	id = 'A';
 	while ((ret = read(fd, buf, 21)) >= 20)
@@ -103,16 +99,18 @@ int	pull_list(const int fd, t_control *gofirst)
 		if (id == 'A' && (tetri = ft_memalloc(sizeof(*tetri))))
 		{
 			write_tetri(buf, tetri, id++);
-			gofirst->first = tetri;
-		}	
-		else if ((new = ft_memalloc(sizeof(*new))))
+			gofirst->next = tetri;
+			tmp = gofirst;
+		}
+		else if ((tetri = ft_memalloc(sizeof(*tetri))))
 		{
-			write_tetri(buf, new, id++);
-			new->next = gofirst->first;
-			gofirst->first = new;
+			write_tetri(buf, tetri, id++);
+			while (tmp->next != NULL)
+				tmp = tmp->next;
+			tmp->next = tetri;
 		}
 	}
 	if (ret != 0)
 		return (0);
-	return (id - 'A');	
+	return (id - 'A');
 }

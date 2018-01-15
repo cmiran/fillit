@@ -6,7 +6,7 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2018/01/11 01:20:13 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/15 17:54:09 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	 backtracker(t_map *map, t_etris *curr)
 ** fill it, and checks if everything's fine.
 */
 
-t_map	*solve_map(t_control *gofirst)
+t_map	*solve_map(t_etris *gofirst)
 {
 	t_map	*map;
 
@@ -108,7 +108,7 @@ t_map	*solve_map(t_control *gofirst)
 		ft_memdel((void **)&map);
 		return (0);
 	}
-	while (!backtracker(map, gofirst->first))
+	while (!backtracker(map, gofirst->next))
 	{
 		ft_freetab(&map->map);
 		map->width++;

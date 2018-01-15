@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 00:35:21 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/11 01:37:51 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/15 17:52:46 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ void	write_tetri(const char *str, t_etris *tetri, char id)
 	i = 0;
 	get_pos(str, x, y);
 	is_top_left(x, y);
+	tetri->i = 0;
 	tetri->id = id;
 	while (i < 4)
 	{
