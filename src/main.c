@@ -6,13 +6,23 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 17:21:35 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/15 21:18:00 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/16 15:25:27 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fillit.h"
-#include "../include/libft.h"	
-
+#include "../include/libft.h"
+/*
+void	free_tetri(t_etris *tetri)
+{
+	tetri->i = 0;
+	tetri->id = 0;
+	ft_bzero(tetri->x, sizeof(tetri->x));
+	ft_memdel((void *)&tetri->x);
+	ft_bzero(tetri->y, sizeof(tetri->y));
+	ft_memdel((void *)&tetri->y);
+}
+*/
 int	kill(char *str)
 {
 	ft_putendl(str);
@@ -32,15 +42,17 @@ int	main(int argc, char **argv)
 	if (!(gofirst = ft_memalloc(sizeof(*gofirst))))
 		return (kill("error"));
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
-	 return (kill("error"));	
-	if ((gofirst->i = pull_list(fd, gofirst, tetri = NULL, tmp = gofirst)) < 1)
+		return (kill("error"));
+	tetri = NULL;
+	tmp = gofirst;
+	if ((gofirst->i = pull_list(fd, gofirst, tetri, tmp)) < 1)
 		return (kill("error"));
 	close(fd);
 	if ((map = solve_map(gofirst)))
 	{
 		ft_puttab((const char **)map->map);
-//		ft_lstdel(gofirst,);
-//		ft_lstdelone(map, );
+//		ft_lstdel((void *)&gofirst, );
+//		ft_lstdelone((void *)&map, );
 		exit(EXIT_SUCCESS);
 	}
 	return (kill("error"));

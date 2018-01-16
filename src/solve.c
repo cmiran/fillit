@@ -6,7 +6,7 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2018/01/15 17:54:09 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/16 14:45:13 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** Create the square that the algorithm will fill with tetriminos.
 */
 
-int	init_map(t_map *map)
+int		init_map(t_map *map)
 {
 	unsigned int	i;
 
@@ -42,14 +42,14 @@ int	init_map(t_map *map)
 ** have been sent by the backtracker.
 */
 
-void	fill_map(t_map *pos, t_etris *curr, int x, int y, char c)
+void	fill_map(t_map *pos, t_etris *curr, t_var *var, char c)
 {
 	int	i;
 
 	i = 0;
 	while (i < 4)
 	{
-		pos->map[y + curr->y[i]][x + curr->x[i]] = c;
+		pos->map[var->y + curr->y[i]][var->x + curr->x[i]] = c;
 		i++;
 	}
 }
@@ -59,32 +59,31 @@ void	fill_map(t_map *pos, t_etris *curr, int x, int y, char c)
 ** or to go back and find another solution.
 */
 
-int	 backtracker(t_map *map, t_etris *curr)
+int		backtracker(t_map *map, t_etris *curr)
 {
-	unsigned int	pos;
-	int						i;
-	int						x;
-	int						y;
+	t_var	*var;
+	int		i;
 
-	if (curr == NULL)
+	if (curr == NULL || (!(var = (t_var *)malloc(sizeof(t_var)))))
 		return (1);
-	pos = 0;
-	while (pos < map->width * map->width)
+	var->pos = 0;
+	while (var->pos < map->width * map->width)
 	{
 		i = 0;
-		x = pos % map->width;
-		y = pos / map->width;
-		while (i < 4 && y + curr->y[i] < map->width	&& x + curr->x[i] < map->width
-				&& map->map[y + curr->y[i]][x + curr->x[i]] == '.')
+		var->x = var->pos % map->width;
+		var->y = var->pos / map->width;
+		while (i < 4 && var->y + curr->y[i] < map->width
+				&& var->x + curr->x[i] < map->width
+				&& map->map[var->y + curr->y[i]][var->x + curr->x[i]] == '.')
 			i++;
 		if (i == 4)
 		{
-			fill_map(map, curr, x, y, curr->id);
+			fill_map(map, curr, var, curr->id);
 			if (backtracker(map, curr->next))
 				return (1);
-			fill_map(map, curr, x, y, '.');
+			fill_map(map, curr, var, '.');
 		}
-		pos++;
+		var->pos++;
 	}
 	return (0);
 }
