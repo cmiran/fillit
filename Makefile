@@ -6,13 +6,13 @@
 #    By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/10 12:12:50 by cmiran            #+#    #+#              #
-#    Updated: 2018/01/10 18:04:05 by cmiran           ###   ########.fr        #
+#    Updated: 2018/01/16 17:35:22 by cmiran           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=		gcc
 CFLAGS=		-Wall -Werror -Wextra
-NAME=	 	fillit
+NAME=fillit
 
 INC_DIR=	./include
 INCS=		$(addprefix -I, $(INC_DIR))
