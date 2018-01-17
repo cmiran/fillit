@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 16:07:42 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/16 17:49:51 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/17 16:08:19 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,24 +48,25 @@ int	check_adja(const char *str)
 ** with only 21 char : '.', five '\n' & four '#'.
 */
 
-int	check_chunk(const char *str, const int ret)
+int	check_chunk(const char *str, const int ret, int *t)
 {
 	int	i;
 	int	j;
 	int	k;
 
+	if (ret == 20)
+		*t = 1;
 	i = 0;
 	k = 0;
 	while (i < 20)
 	{
-		j = 0;
-		while (j < 4)
+		j = -1;
+		while (++j < 4)
 		{
 			if (str[i + j] != '.' && str[i + j] != '#')
 				return (0);
 			else if (str[i + j] == '#' && ++k > 4)
 				return (0);
-			j++;
 		}
 		if (str[i + j] != '\n')
 			return (0);
@@ -85,27 +86,27 @@ int	pull_list(const int fd, t_etris *gofirst, t_etris *tetri, t_etris *tmp)
 {
 	char		id;
 	int			ret;
-	char		buf[22];
+	char		buf[16];
+	int			t;
 
-	id = 'A';
-	while ((ret = read(fd, buf, 21)) >= 20)
+	while ((ret = read(fd, buf, 21)) > 19)
 	{
-		if (!(check_chunk(buf, ret)))
+		if (!(check_chunk(buf, ret, &t)))
 			return (0);
-		if (id == 'A' && (tetri = ft_memalloc(sizeof(*tetri))))
+		if (!id && (tetri = ft_memalloc(sizeof(*tetri))))
 		{
-			write_tetri(buf, tetri, id++);
+			write_tetri(buf, tetri, (id = 'A'));
 			gofirst->next = tetri;
 		}
 		else if ((tetri = ft_memalloc(sizeof(*tetri))))
 		{
-			write_tetri(buf, tetri, id++);
+			write_tetri(buf, tetri, ++id);
 			while (tmp->next != NULL)
 				tmp = tmp->next;
 			tmp->next = tetri;
 		}
-	}	
-	if (ret != 0)
+	}
+	if (ret != 0 || t != 1)
 		return (0);
 	return (id - 'A');
 }
