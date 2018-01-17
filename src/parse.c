@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 16:07:42 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/17 17:03:18 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/17 22:00:36 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	check_chunk(const char *str, const int ret, int *t)
 }
 
 /*
-** Assuming the input is valid, malloc a s_etris for each tetrimino,
+** Assuming the input is valid, malloc a s_etris for each tetriminos
 ** in a linked list.
 */
 

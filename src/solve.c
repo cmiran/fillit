@@ -6,7 +6,7 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 21:55:30 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/17 21:59:42 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	fill_map(t_map *pos, t_etris *curr, t_var *var, char c)
 }
 
 /*
-** Algorithm seaching if the spot is empty, full or exist, for the current
+** Algorithm seaching if the spot is empty or full and exist, for the current
 ** piece and the next. If somewhere false, return 0 to enlarge the map.
 */
 
