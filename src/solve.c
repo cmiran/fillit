@@ -6,7 +6,7 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 17:03:44 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/17 21:55:30 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ int		init_map(t_map *map)
 }
 
 /*
-** Fonction that put a tetrimino in the square at the position that
-** have been sent by the backtracker.
+** Position a piece in the matrix with the coodinates sent by backtracker.
 */
 
 void	fill_map(t_map *pos, t_etris *curr, t_var *var, char c)
@@ -55,8 +54,8 @@ void	fill_map(t_map *pos, t_etris *curr, t_var *var, char c)
 }
 
 /*
-** Backtracking algorithm that call himself back to continue the filling
-** or to go back and find another solution.
+** Algorithm seaching if the spot is empty, full or exist, for the current
+** piece and the next. If somewhere false, return 0 to enlarge the map.
 */
 
 int		backtracker(t_map *map, t_etris *curr)
@@ -89,8 +88,7 @@ int		backtracker(t_map *map, t_etris *curr)
 }
 
 /*
-** Main fonction that calls others fonctions to create the matrix,
-** fill it, and checks if everything's fine.
+** Malloc the map and search for its lowest size.
 */
 
 t_map	*solve_map(t_etris *gofirst)
