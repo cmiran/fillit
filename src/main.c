@@ -6,15 +6,16 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 17:21:35 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/17 18:11:56 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/17 22:14:41 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include "libft.h"
 
-int	kill(char *str)
+int	kill(char *str, int *fd)
 {
+	close(*fd);
 	ft_putendl(str);
 	exit(EXIT_FAILURE);
 }
@@ -28,22 +29,22 @@ int	main(int argc, char **argv)
 	t_map	*map;
 
 	if (argc != 2)
-		kill("usage: ./fillit [input_file.fillit]");
+		kill("usage: ./fillit [input_file.fillit]", &fd);
 	if (!(gofirst = ft_memalloc(sizeof(*gofirst))))
-		return (kill("error"));
+		return (kill("error", &fd));
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
-		return (kill("error"));
+		return (kill("error", &fd));
 	tetri = NULL;
 	tmp = gofirst;
 	if ((gofirst->i = pull_list(fd, gofirst, tetri, tmp)) < 1)
-		return (kill("error"));
-	close(fd);
+		return (kill("error", &fd));
 	if ((map = solve_map(gofirst)))
 	{
 		ft_puttab((const char **)map->map);
+		close(fd);
 		exit(EXIT_SUCCESS);
 	}
-	return (kill("error"));
+	return (kill("error", &fd));
 }
 
 /*
