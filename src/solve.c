@@ -6,7 +6,7 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 22:29:20 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/17 22:41:29 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,9 @@ void	fill_map(t_map *pos, t_etris *curr, t_var *var, char c)
 {
 	int	i;
 
-	i = 0;
-	while (i < 4)
-	{
+	i = -1;
+	while (++i < 4)
 		pos->map[var->y + curr->y[i]][var->x + curr->x[i]] = c;
-		i++;
-	}
 }
 
 /*
@@ -68,8 +65,8 @@ int		backtracker(t_map *map, t_etris *curr)
 
 	if (curr == NULL || (!(var = (t_var *)malloc(sizeof(t_var)))))
 		return (1);
-	var->pos = 0;
-	while (var->pos < map->width * map->width)
+	var->pos = -1;
+	while (++(var->pos) < map->width * map->width)
 	{
 		i = 0;
 		var->x = var->pos % map->width;
@@ -85,7 +82,6 @@ int		backtracker(t_map *map, t_etris *curr)
 				return (1);
 			fill_map(map, curr, var, '.');
 		}
-		var->pos++;
 	}
 	return (0);
 }
