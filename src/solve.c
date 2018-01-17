@@ -6,12 +6,12 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 22:02:36 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/17 22:29:20 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
-#include "libft.h"
+#include "../include/fillit.h"
+#include "../include/libft.h"
 
 /*
 ** Create the square that the algorithm will fill with tetriminos.
@@ -23,7 +23,10 @@ int		init_map(t_map *map)
 
 	i = 0;
 	if (!(map->map = (char **)malloc(sizeof(char *) * map->width + 1)))
+	{
+		ft_memdel((void **)&map);
 		return (0);
+	}
 	while (i < map->width)
 	{
 		if (!(map->map[i] = ft_strcnew(map->width, '.')))
@@ -101,19 +104,13 @@ t_map	*solve_map(t_etris *gofirst)
 	while ((map->width * map->width) < (gofirst->i) * 4)
 		map->width++;
 	if (!init_map(map))
-	{
-		ft_memdel((void **)&map);
 		return (0);
-	}
 	while (!backtracker(map, gofirst->next))
 	{
 		ft_freetab(&map->map);
 		map->width++;
 		if (!init_map(map))
-		{
-			ft_memdel((void **)&map);
 			return (0);
-		}
 	}
 	return (map);
 }
