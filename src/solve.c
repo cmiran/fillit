@@ -6,7 +6,7 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 22:53:38 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/17 23:05:16 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int		init_map(t_map *map)
 {
 	unsigned int	i;
 
-	i = -1;
 	if (!(map->map = (char **)malloc(sizeof(char *) * map->width + 1)))
 	{
 		ft_memdel((void **)&map);
 		return (0);
 	}
+	i = -1;
 	while (++i < map->width)
 		if (!(map->map[i] = ft_strcnew(map->width, '.')))
 		{
