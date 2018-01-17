@@ -6,12 +6,12 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2018/01/16 17:32:36 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/17 17:03:44 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fillit.h"
-#include "../include/libft.h"
+#include "fillit.h"
+#include "libft.h"
 
 /*
 ** Create the square that the algorithm will fill with tetriminos.

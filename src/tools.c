@@ -6,12 +6,12 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 18:29:45 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/16 12:25:35 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/17 17:03:51 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fillit.h"
-#include "../include/libft.h"
+#include "fillit.h"
+#include "libft.h"
 
 void	print_list(t_etris *gofirst)
 {
