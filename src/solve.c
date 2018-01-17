@@ -6,7 +6,7 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 23:05:16 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/17 23:54:54 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,12 @@ void	fill_map(t_map *pos, t_etris *curr, t_var *var, char c)
 
 int		backtracker(t_map *map, t_etris *curr)
 {
-	t_var	*var;
+	t_var *var;
 	int		i;
 
-	if (curr == NULL || (!(var = (t_var *)malloc(sizeof(t_var)))))
+	if (curr == NULL)
 		return (1);
+	var = (t_var *)malloc(sizeof(t_var));
 	var->pos = -1;
 	while (++(var->pos) < map->width * map->width)
 	{
@@ -92,7 +93,7 @@ t_map	*solve_map(t_etris *gofirst)
 {
 	t_map	*map;
 
-	if (!(map = (t_map *)malloc(sizeof(t_map))))
+	if ((!(map = (t_map *)malloc(sizeof(t_map)))))
 		return (0);
 	map->width = 2;
 	while ((map->width * map->width) < (gofirst->i) * 4)

@@ -6,16 +6,36 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 17:21:35 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/17 22:19:55 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/18 00:11:43 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
-#include "libft.h"
+#include "../include/fillit.h"
+#include "../include/libft.h"
 
 int	kill(char *str)
 {
 	ft_putendl(str);
+	exit(EXIT_FAILURE);
+}
+
+int ultra_kill(char *str, t_etris *list)
+{
+	t_etris	*tmp;
+
+	ft_putendl(str);
+	while (list->next != NULL)
+	{
+		tmp = list;
+		tmp->i = 0;
+		tmp->id = 0;
+		ft_bzero(tmp->x, 4);
+		ft_bzero(tmp->y, 4);
+		list = tmp->next;
+		free(tmp);
+	}
+	free(list);
+	list = NULL;
 	exit(EXIT_FAILURE);
 }
 
@@ -32,13 +52,13 @@ int	main(int argc, char **argv)
 	if (!(gofirst = ft_memalloc(sizeof(*gofirst))))
 		return (kill("error"));
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
-		return (kill("error"));
+		return (ultra_kill("error", gofirst));
 	tetri = NULL;
 	tmp = gofirst;
 	if ((gofirst->i = pull_list(fd, gofirst, tetri, tmp)) < 1)
 	{
 		close(fd);
-		return (kill("error"));
+		return (close(fd) && ultra_kill("error", gofirst));
 	}
 	close(fd);
 	if ((map = solve_map(gofirst)))
@@ -46,5 +66,5 @@ int	main(int argc, char **argv)
 		ft_puttab((const char **)map->map);
 		exit(EXIT_SUCCESS);
 	}
-	return (kill("error"));
+	return (ultra_kill("error", gofirst));
 }
