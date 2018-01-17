@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 17:21:35 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/17 17:03:38 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/17 18:11:56 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int	kill(char *str)
 
 int	main(int argc, char **argv)
 {
-	int			fd;
+	int		fd;
 	t_etris	*gofirst;
 	t_etris	*tetri;
 	t_etris	*tmp;
-	t_map		*map;
+	t_map	*map;
 
 	if (argc != 2)
 		kill("usage: ./fillit [input_file.fillit]");

@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/09 18:29:45 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/17 17:03:51 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/17 18:12:06 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	print_list(t_etris *gofirst)
 {
 	t_etris	*current;
-	int			i;
+	int		i;
 
 	printf("#########################\n");
 	printf("#  nbr tetriminos : %d  #\n", gofirst->i);
