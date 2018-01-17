@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 17:21:35 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/18 00:11:43 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/18 00:26:11 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int ultra_kill(char *str, t_etris *list)
 	t_etris	*tmp;
 
 	ft_putendl(str);
+	if (!list)
+		exit(EXIT_FAILURE);
 	while (list->next != NULL)
 	{
 		tmp = list;
@@ -37,6 +39,28 @@ int ultra_kill(char *str, t_etris *list)
 	free(list);
 	list = NULL;
 	exit(EXIT_FAILURE);
+}
+
+int	success(t_etris *list, t_map *map)
+{
+	t_etris *tmp;
+
+	while (list->next != NULL)
+	{
+		tmp = list;
+		tmp->i = 0;
+		tmp->id = 0;
+		ft_bzero(tmp->x, 4);
+		ft_bzero(tmp->y, 4);
+		list = tmp->next;
+		free(tmp);
+	}
+	free(list);
+	list = NULL;
+	ft_freetab(&map->map);
+	ft_memdel((void **)&map);
+	map = NULL;
+	exit(EXIT_SUCCESS);
 }
 
 int	main(int argc, char **argv)
@@ -64,7 +88,7 @@ int	main(int argc, char **argv)
 	if ((map = solve_map(gofirst)))
 	{
 		ft_puttab((const char **)map->map);
-		exit(EXIT_SUCCESS);
+		return(success(gofirst, map));
 	}
 	return (ultra_kill("error", gofirst));
 }
