@@ -6,31 +6,12 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 16:07:42 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/18 00:06:34 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/18 00:30:22 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fillit.h"
 #include "../include/libft.h"
-
-int	die(t_etris *list)
-{
-	t_etris	*tmp;
-
-	while (list->next != NULL)
-	{
-		tmp = list;
-		tmp->i = 0;
-		tmp->id = 0;
-		ft_bzero(tmp->x, 4);
-		ft_bzero(tmp->y, 4);
-		list = tmp->next;
-		free(tmp);
-	}
-	free(list);
-	list = NULL;
-	return (0);
-}
 
 /*
 ** Check if each '#' is adjacent to another.
@@ -110,7 +91,7 @@ int	pull_list(const int fd, t_etris *gofirst, t_etris *tetri, t_etris *tmp)
 	while ((ret = read(fd, buf, 21)) > 19)
 	{
 		if (!(check_chunk(buf, ret, &t)))
-			return (die(gofirst));
+			return (0);
 		if (!id && (tetri = ft_memalloc(sizeof(*tetri))))
 		{
 			write_tetri(buf, tetri, id = 'A');
@@ -125,6 +106,6 @@ int	pull_list(const int fd, t_etris *gofirst, t_etris *tetri, t_etris *tmp)
 		}
 	}
 	if (ret != 0 || t != 1)
-		return (die(gofirst));
+		return (0);
 	return (id - 'A');
 }
