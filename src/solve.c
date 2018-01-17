@@ -6,7 +6,7 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2018/01/17 22:41:29 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/17 22:53:38 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,18 @@ int		init_map(t_map *map)
 {
 	unsigned int	i;
 
-	i = 0;
+	i = -1;
 	if (!(map->map = (char **)malloc(sizeof(char *) * map->width + 1)))
 	{
 		ft_memdel((void **)&map);
 		return (0);
 	}
-	while (i < map->width)
-	{
+	while (++i < map->width)
 		if (!(map->map[i] = ft_strcnew(map->width, '.')))
 		{
 			ft_freetab(&map->map);
 			return (0);
 		}
-		i++;
-	}
 	map->map[i] = NULL;
 	return (1);
 }
@@ -80,7 +77,8 @@ int		backtracker(t_map *map, t_etris *curr)
 			fill_map(map, curr, var, curr->id);
 			if (backtracker(map, curr->next))
 				return (1);
-			fill_map(map, curr, var, '.');
+			else
+				fill_map(map, curr, var, '.');
 		}
 	}
 	return (0);
