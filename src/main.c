@@ -6,16 +6,15 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 17:21:35 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/17 22:14:41 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/17 22:19:55 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include "libft.h"
 
-int	kill(char *str, int *fd)
+int	kill(char *str)
 {
-	close(*fd);
 	ft_putendl(str);
 	exit(EXIT_FAILURE);
 }
@@ -29,25 +28,23 @@ int	main(int argc, char **argv)
 	t_map	*map;
 
 	if (argc != 2)
-		kill("usage: ./fillit [input_file.fillit]", &fd);
+		kill("usage: ./fillit [input_file.fillit]");
 	if (!(gofirst = ft_memalloc(sizeof(*gofirst))))
-		return (kill("error", &fd));
+		return (kill("error"));
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
-		return (kill("error", &fd));
+		return (kill("error"));
 	tetri = NULL;
 	tmp = gofirst;
 	if ((gofirst->i = pull_list(fd, gofirst, tetri, tmp)) < 1)
-		return (kill("error", &fd));
+	{
+		close(fd);
+		return (kill("error"));
+	}
+	close(fd);
 	if ((map = solve_map(gofirst)))
 	{
 		ft_puttab((const char **)map->map);
-		close(fd);
 		exit(EXIT_SUCCESS);
 	}
-	return (kill("error", &fd));
+	return (kill("error"));
 }
-
-/*
-** ft_lstdel((void *)&gofirst, );
-** ft_lstdelone((void *)&map, );
-*/
