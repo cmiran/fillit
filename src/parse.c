@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 16:07:42 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/17 22:00:36 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/17 22:50:07 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int	check_adja(const char *str)
 	int i;
 	int j;
 
-	i = 0;
+	i = -1;
 	j = 0;
-	while (i < 20)
+	while (++i < 20)
 	{
 		if (str[i] == '#')
 		{
@@ -38,7 +38,6 @@ int	check_adja(const char *str)
 			if ((i - 5) >= 0 && str[i - 5] == '#')
 				j++;
 		}
-		i++;
 	}
 	return (j == 6 || j == 8);
 }

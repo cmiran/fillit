@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 00:35:21 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/17 17:03:57 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/17 22:48:14 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,13 @@ void	go_y_up(int *y, int *y_check)
 {
 	int	i;
 
-	i = 0;
-	while (i < 4)
-	{
+	i = -1;
+	while (++i < 4)
 		y[i] -= 1;
-		i++;
-	}
-	i = 0;
-	while (i < 4)
-	{
+	i = -1;
+	while (++i < 4)
 		if (y[i] == 0)
 			*y_check = 1;
-		i++;
-	}
 	if (*y_check != 1)
 		go_y_up(y, y_check);
 }
@@ -46,19 +40,13 @@ void	go_x_left(int *x, int *x_check)
 {
 	int	i;
 
-	i = 0;
-	while (i < 4)
-	{
+	i = -1;
+	while (++i < 4)
 		x[i] -= 1;
-		i++;
-	}
-	i = 0;
-	while (i < 4)
-	{
+	i = -1;
+	while (++i < 4)
 		if (x[i] == 0)
 			*x_check = 1;
-		i++;
-	}
 	if (*x_check != 1)
 		go_x_left(x, x_check);
 }
@@ -74,8 +62,8 @@ void	is_top_left(int *x, int *y)
 	int	x_check;
 	int	y_check;
 
-	i = 0;
-	while (i < 4)
+	i = -1;
+	while (++i < 4)
 	{
 		if (x[i] == 0)
 			x_check = 1;
@@ -83,7 +71,6 @@ void	is_top_left(int *x, int *y)
 			y_check = 1;
 		if (x_check == 1 && y_check == 1)
 			return ;
-		i++;
 	}
 	if (x_check != 1)
 		go_x_left(x, &x_check);
@@ -105,16 +92,13 @@ void	get_pos(const char *str, int *x, int *y)
 	k = 0;
 	while (i < 20)
 	{
-		j = 0;
-		while (j < 4)
-		{
+		j = -1;
+		while (++j < 4)
 			if (str[i + j] == '#')
 			{
 				*x++ = j;
 				*y++ = k;
 			}
-			j++;
-		}
 		i += j + 1;
 		k++;
 	}
@@ -126,20 +110,19 @@ void	get_pos(const char *str, int *x, int *y)
 
 void	write_tetri(const char *str, t_etris *tetri, char id)
 {
-	int	i;
 	int	x[4];
 	int	y[4];
+	int	i;
 
-	i = 0;
 	get_pos(str, x, y);
 	is_top_left(x, y);
+	i = -1;
 	tetri->i = 0;
 	tetri->id = id;
-	while (i < 4)
+	while (++i < 4)
 	{
 		tetri->x[i] = x[i];
 		tetri->y[i] = y[i];
-		i++;
 	}
 	tetri->next = NULL;
 }
