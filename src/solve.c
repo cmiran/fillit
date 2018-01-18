@@ -6,12 +6,22 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2018/01/18 01:30:04 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/18 01:57:59 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fillit.h"
 #include "../include/libft.h"
+
+int	die(t_var *var)
+{
+	var->pos = 0;
+	var->x = 0;
+	var->y = 0;
+	free(var);
+	var = NULL;
+	return (0);
+}
 
 /*
 ** Create the square that the algorithm will fill with tetriminos.
@@ -82,7 +92,7 @@ int		backtracker(t_map *map, t_etris *curr)
 				fill_map(map, curr, var, '.');
 		}
 	}
-	return (0);
+	return (die(var));
 }
 
 /*
