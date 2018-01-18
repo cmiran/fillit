@@ -6,12 +6,12 @@
 #    By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/10 12:12:50 by cmiran            #+#    #+#              #
-#    Updated: 2018/01/17 17:42:47 by cmiran           ###   ########.fr        #
+#    Updated: 2018/01/18 01:13:30 by cmiran           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=		gcc
-CFLAGS=		-Wall -Werror -Wextra
+CFLAGS=		-Wall -Werror -Wextra -g
 NAME=		fillit
 
 INC_DIR=	./include

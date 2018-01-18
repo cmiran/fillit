@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 00:35:21 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/17 22:48:14 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/18 01:16:10 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	is_top_left(int *x, int *y)
 	int	y_check;
 
 	i = -1;
+	x_check = 0;
+	y_check = 0;
 	while (++i < 4)
 	{
 		if (x[i] == 0)
