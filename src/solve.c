@@ -6,14 +6,14 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2018/01/18 01:57:59 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/18 19:18:53 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fillit.h"
 #include "../include/libft.h"
 
-int	die(t_var *var)
+int		die(t_var *var)
 {
 	var->pos = 0;
 	var->x = 0;
@@ -67,7 +67,7 @@ void	fill_map(t_map *pos, t_etris *curr, t_var *var, char c)
 
 int		backtracker(t_map *map, t_etris *curr)
 {
-	t_var *var;
+	t_var	*var;
 	int		i;
 
 	if (curr == NULL)
@@ -88,8 +88,7 @@ int		backtracker(t_map *map, t_etris *curr)
 			fill_map(map, curr, var, curr->id);
 			if (backtracker(map, curr->next))
 				return (1);
-			else
-				fill_map(map, curr, var, '.');
+			fill_map(map, curr, var, '.');
 		}
 	}
 	return (die(var));
