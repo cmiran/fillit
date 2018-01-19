@@ -6,7 +6,7 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2018/01/18 23:57:25 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/19 06:31:55 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		init_map(t_map *map)
 }
 
 /*
-** Position a piece in the matrix with the coodinates sent by backtracker.
+** Place a piece in the matrix with the coodinates sent by backtracker.
 */
 
 void	fill_map(t_map *pos, t_etris *curr, t_var *var, char c)
@@ -61,8 +61,9 @@ void	fill_map(t_map *pos, t_etris *curr, t_var *var, char c)
 }
 
 /*
-** Algorithm seaching if the spot is empty or full and exist for the current
-** piece and the nexts. If somewhere false, return 0 to enlarge the map.
+** Algorithm seaching if the spot exist, and if it is empty or full,
+** for the current piece and the nexts. If somewhere false, return 0 to
+** enlarge the map.
 */
 
 int		backtracker(t_map *map, t_etris *curr)
