@@ -6,7 +6,7 @@
 #    By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/10 12:12:50 by cmiran            #+#    #+#              #
-#    Updated: 2018/01/18 14:31:48 by cmiran           ###   ########.fr        #
+#    Updated: 2018/01/22 17:39:47 by cmiran           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ NAME=		fillit
 INC_DIR=	./include
 INCS=		$(addprefix -I, $(INC_DIR))
 
-LIB=		./libft.a
+LIB_DIR=	./libft
+LIB=		./libft/libft.a
+LIB_LINK=	 -L $(LIB_DIR) -lft
 
 SRC_DIR=	./src
 SRC=		main.c\
@@ -28,23 +30,27 @@ SRC=		main.c\
 OBJ_DIR=	./obj
 OBJS=		$(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
-all: obj $(NAME)
+all: $(NAME)
+
+$(NAME): obj $(LIB) $(OBJS)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIB_LINK) -o $@
 
 obj:
 	@mkdir -p obj
 
-$(NAME): $(LIB) $(OBJS)
-	@$(CC) $(CFLAGS) -o $@ $^
-
+$(LIB):
+	@make -C ./libft
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) $(CFLAGS) -o $@ -c $< $(INCS) 
 
 clean:
+	@make clean -C ./libft
 	@rm -f $(OBJS)
 	@rm -rf $(OBJ_DIR)
 
 fclean: clean
+	@make fclean -C ./libft
 	@rm -f $(NAME)
 
 re: fclean all

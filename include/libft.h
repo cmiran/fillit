@@ -6,7 +6,7 @@
 /*   By: cmiran <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/12 08:40:10 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/11 01:26:39 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/19 04:54:29 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int				ft_strcasecmp(const char *s1, const char *s2);
 char			*ft_strcasestr(const char *haystack, const char *needle);
 char			*ft_strcat(char *dest, const char *src);
 char			*ft_strchr(const char *s, int c);
+char			*ft_strcjoin(char const *s1, char const *s2, char c);
 size_t			ft_strclen(const char *s, char c);
 void			ft_strclr(char *s);
 int				ft_strcmp(const char *s1, const char *s2);
