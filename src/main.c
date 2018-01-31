@@ -6,12 +6,12 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 17:21:35 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/22 15:04:11 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/31 01:32:05 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fillit.h"
-#include "../include/libft.h"
+#include "fillit.h"
+#include "libft.h"
 
 int	kill(char *str)
 {

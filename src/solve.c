@@ -6,12 +6,12 @@
 /*   By: obadaoui <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 17:28:01 by obadaoui          #+#    #+#             */
-/*   Updated: 2018/01/23 03:41:36 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/01/31 01:31:38 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fillit.h"
-#include "../include/libft.h"
+#include "fillit.h"
+#include "libft.h"
 
 int		die(t_var *var)
 {
