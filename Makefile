@@ -6,7 +6,7 @@
 #    By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/10 12:12:50 by cmiran            #+#    #+#              #
-#    Updated: 2018/01/22 18:29:03 by cmiran           ###   ########.fr        #
+#    Updated: 2018/02/06 16:14:04 by cmiran           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CFLAGS=		-Wall -Werror -Wextra
 NAME=		fillit
 
 INC_DIR=	./include
-INCS=		$(addprefix -I, $(INC_DIR))
+INCS=		 -I $(INC_DIR) -I $(LIB_DIR)
 
 LIB_DIR=	./libft
 LIB=		./libft/libft.a

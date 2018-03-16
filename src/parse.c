@@ -6,7 +6,7 @@
 /*   By: cmiran <cmiran@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 16:07:42 by cmiran            #+#    #+#             */
-/*   Updated: 2018/01/31 01:31:52 by cmiran           ###   ########.fr       */
+/*   Updated: 2018/02/06 15:58:48 by cmiran           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,5 @@ int	pull_list(const int fd, t_etris *gofirst, t_etris *tetri, t_etris *tmp)
 	}
 	if (ret != 0 || t != 1)
 		return (0);
-	return (id - 'A');
+	return (id - '@');
 }
